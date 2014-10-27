@@ -13,6 +13,9 @@
 
 // Objeto singleton Game: se guarda una unica instancia del
 // constructor anónimo en el objeto Game
+
+//var _= require('underscore');
+
 var Game = new function() {                                                                  
 
     // Inicializa el juego
