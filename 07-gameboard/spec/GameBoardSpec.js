@@ -127,6 +127,28 @@ describe("GameBoard", function(){
    	 expect(board.objects[1].stepAux).toHaveBeenCalledWith(3);
    });
    
+   it("Prueba detect", function(){
+   	 
+   	 function decisor () {
+			return this.p === 1;
+   	 };
+   	 
+   	 var objAux = {
+   	 	p: 0
+   	 };
+   	 
+   	 var objAux2 = {
+   	 	p: 1
+   	 };
+   	 
+   	 board.add(objAux);
+   	 board.add(objAux2);
+   	 
+   	 var resultado = board.detect(decisor);
+   	 
+   	 expect(resultado).toEqual(objAux2);
+   });
+   
    it("Prueba draw", function(){
    	 spyOn(board, 'iterate');
    	 
