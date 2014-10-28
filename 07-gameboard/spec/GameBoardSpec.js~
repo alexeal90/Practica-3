@@ -1,3 +1,4 @@
+	var _= require('underscore');
 /*
 
   En el anterior prototipo (06-player), el objeto Game permite
@@ -131,13 +132,6 @@ describe("GameBoard", function(){
    	 
    	 function decisor () {
 			return this.p === 1;
-			/*
-   	 	if (o.p === 0){
-   	 		return false;
-   	 	}else {
-   	 		return true;
-   	 	};*/
-
    	 };
    	 
    	 var objAux = {

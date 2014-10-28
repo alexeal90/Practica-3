@@ -212,18 +212,20 @@
 		// Convertimos en un array args (1..)
 			var args = Array.prototype.slice.call(arguments,1);
 
-		for(var i=0, len=this.objects.length; i<len;i++) {
-			 var obj = this.objects[i];
-			 obj[funcName].apply(obj,args)
-		}
+			this.objects.map(function(stArg){
+				stArg[funcName].apply(stArg,args)
+			});
 		 };
 
 		 // Devuelve el primer objeto de objects para el que func es true
 		this.detect = function(func) {
-			for(var i = 0,val=null, len=this.objects.length; i < len; i++) {
-				if(func.call(this.objects[i])) return this.objects[i];
-			}
-			return false;
+			var obtTrue = this.objects.filter(function(stArg){
+				if(func.call(stArg))return stArg;
+			});
+    		if(obtTrue.length!= 0){
+    			return obtTrue[0];
+    		}
+    		return false;
 		};
 
 		 // Cuando Game.loop() llame a step(), hay que llamar al método
