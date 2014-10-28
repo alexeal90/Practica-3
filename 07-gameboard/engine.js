@@ -230,7 +230,7 @@
 		 // step() de todos los objetos contenidos en el tablero.  Antes se
 		 // inicializa la lista de objetos pendientes de borrar, y después
 		 // se borran los que hayan aparecido en dicha lista
-		 this.step = function(dt) { 
+		this.step = function(dt) { 
 		this.resetRemoved();
 		this.iterate('step',dt);
 		this.finalizeRemoved();

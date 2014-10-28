@@ -127,6 +127,18 @@ describe("GameBoard", function(){
    	 expect(board.objects[1].stepAux).toHaveBeenCalledWith(3);
    });
    
+   it("Prueba step", function(){
+   	 spyOn(board, 'resetRemoved');
+   	 spyOn(board, 'iterate');
+   	 spyOn(board, 'finalizeRemoved');
+   	 
+   	 board.step();
+   	 
+   	 expect(board.resetRemoved).toHaveBeenCalled();
+   	 expect(board.iterate).toHaveBeenCalled();
+   	 expect(board.finalizeRemoved).toHaveBeenCalled();
+   });
+   
    it("Existe interseccion", function(){
    	 
    	 var objRef = {x:0, y:0, w:5, h:10};
