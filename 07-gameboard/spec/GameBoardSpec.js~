@@ -105,29 +105,26 @@ describe("GameBoard", function(){
    
 	it("Prueba iteracion", function(){
    	 var objAux = {
-   	 	drawAux = function(){};
-   	 	stepAux = function(){};
+   	 	drawAux: function(){},
+   	 	stepAux: function(){}
+   	 };
+   	 
+   	 var objAux2 = {
+   	 	drawAux: function(){},
+   	 	stepAux: function(){}
    	 };
    	 
    	 board.add(objAux);
-   	 
-   	 spyOn(board, 'draw').andCallThrough();
-   	 spyOn(board, 'step').andCallThrough();
+   	 board.add(objAux2);
    	 
    	 spyOn(board.objects[0], 'drawAux');
-   	 spyOn(board.objects[0], 'stepAux');
+   	 spyOn(board.objects[1], 'stepAux');
    	 
-   	 Game.initialize('game', sprites, function(){});
-   	 Game.setBoard(1, board);
+   	 board.iterate('drawAux');
+   	 board.iterate('stepAux', 3);
    	 
-  		 waits(90);
-  		 
-  		 runs(function(){
-   	 	expect(board.draw).toHaveBeenCalled();
-   	 	expect(board.step).toHaveBeenCalled();
-   	 	expect(board.objects[0].drawAux).toHaveBeenCalled();
-   	 	expect(board.objects[0].stepAux).toHaveBeenCalled();
-  		 });
+   	 expect(board.objects[0].drawAux).toHaveBeenCalled();
+   	 expect(board.objects[1].stepAux).toHaveBeenCalledWith(3);
    });
    
    it("Existe interseccion", function(){
