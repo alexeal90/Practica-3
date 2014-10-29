@@ -43,11 +43,16 @@ describe("PlayerMissile", function(){
        ctx = canvas.getContext('2d');
        expect(ctx).toBeDefined();
        board = new GameBoard();
+       //var oldSpriteSheet = SpriteSheet;
    });
+   
+   //afterEach(function(){
+   	//SpriteSheet = oldSpriteSheet;
+   //});
 
 	it("Prueba PlayerMissile", function() {
 		SpriteSheet.map = {missile: {h:10, w:2}};
-		var disparo = new PlayerMissile(1, 1);
+		disparo = new PlayerMissile(1, 1);
 		
 		expect(disparo.w).toBe(SpriteSheet.map['missile'].w);
 		expect(disparo.h).toBe(SpriteSheet.map['missile'].h);
@@ -57,7 +62,14 @@ describe("PlayerMissile", function(){
 	});
 
 	it("Draw PlayerMissile", function() {
-	
+		SpriteSheet = {draw: function(){}, map: {missile: {sx: 0, sy: 30, w: 2, h: 10, frames: 1}}};
+		var aux = {};
+		disparo = new PlayerMissile(1,1);
+		
+		spyOn(SpriteSheet, 'draw');
+		disparo.draw(aux);
+		
+		expect(SpriteSheet.draw).toHaveBeenCalled();
 	};
 
 
