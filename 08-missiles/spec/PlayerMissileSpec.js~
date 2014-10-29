@@ -56,9 +56,7 @@ describe("PlayerMissile", function(){
 		expect(disparo.vy).toEqual(-700);
 	});
 
-	it("Draw PlayerMissile", function() {
-	
-	};
+
 
 
 });

@@ -95,21 +95,22 @@ var Starfield = function(speed,opacity,numStars,clear) {
 // La clase PlayerShip tambien ofrece la interfaz step(), draw() para
 // poder ser dibujada desde el bucle principal del juego
 var PlayerShip = function() { 
-    this.w =  SpriteSheet.map['ship'].w;
-    this.h =  SpriteSheet.map['ship'].h;
-    this.x = Game.width/2 - this.w / 2;
-    this.y = Game.height - 10 - this.h;
-    this.vx = 0;
+	this.pulsado = false;
+   this.w =  SpriteSheet.map['ship'].w;
+   this.h =  SpriteSheet.map['ship'].h;
+   this.x = Game.width/2 - this.w / 2;
+   this.y = Game.height - 10 - this.h;
+   this.vx = 0;
+	 
+   this.reloadTime = 0.25;  // Un cuarto de segundo para poder volver a disparar
+   this.reload = this.reloadTime;
 
-    this.reloadTime = 0.25;  // Un cuarto de segundo para poder volver a disparar
-    this.reload = this.reloadTime;
+   this.maxVel = 200;
 
-    this.maxVel = 200;
-
-    this.step = function(dt) {
-	if(Game.keys['left']) { this.vx = -this.maxVel; }
-	else if(Game.keys['right']) { this.vx = this.maxVel; }
-	else { this.vx = 0; }
+   this.step = function(dt) {
+		if(Game.keys['left']) { this.vx = -this.maxVel; }
+		else if(Game.keys['right']) { this.vx = this.maxVel; }
+		else { this.vx = 0; }
 
 	this.x += this.vx * dt;
 
@@ -117,11 +118,21 @@ var PlayerShip = function() {
 	else if(this.x > Game.width - this.w) { 
 	    this.x = Game.width - this.w 
 	}
+	
+	this.boolDisparo = function() {
+      var fuego = false;
+      var espacioPulsado = Game.keys['fire'];
+      if(this.pulsado === false && espacioPulsado === true){
+				fuego = true;
+		};
+      this.pulsado = espacioPulsado;
+      return fuego;
+    };
 
 	this.reload-=dt;
-	if(Game.keys['fire'] && this.reload < 0) {
+	if(this.boolDisparo() && this.reload < 0) {
 	    // Esta pulsada la tecla de disparo y ya ha pasado el tiempo reload
-	    Game.keys['fire'] = false;
+	    //Game.keys['fire'] = false;
 	    this.reload = this.reloadTime;
 
 	    // Se añaden al gameboard 2 misiles 
