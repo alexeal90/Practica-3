@@ -81,7 +81,7 @@ describe("PlayerMissile", function(){
 		var cte = -1;
 		//creo un board nuevo con un campo remove vacio, necesario para step.
 		var newBoard = {
-			remove: function(obj) {}
+			remove: function() {}
 		};
 		
 		disparo.board = newBoard;

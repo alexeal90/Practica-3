@@ -92,7 +92,7 @@ describe("PlayerMissile", function(){
 		expect(disparo.y).toBe(yAux + disparo.vy*cte);
 		expect(newBoard.remove).not.toHaveBeenCalled();
 		//modifico el valor del argumento que le paso a .step para que se cumpla la condicion y se llame a .remove con disparo como argumento
-		disparo.step(1+(-disparo.h-disparo.y)/disparo.vy););
+		disparo.step(1+(-disparo.h-disparo.y)/disparo.vy);
 		expect(newBoard.remove).toHaveBeenCalledWith(disparo);
 	});
 
