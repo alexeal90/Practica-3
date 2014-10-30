@@ -95,7 +95,7 @@
 	// La clase PlayerShip tambien ofrece la interfaz step(), draw() para
 	// poder ser dibujada desde el bucle principal del juego
 	var PlayerShip = function() { 
-		this.pulsado = true;
+		this.noPulsado = true;
 		this.w =  SpriteSheet.map['ship'].w;
 		this.h =  SpriteSheet.map['ship'].h;
 		this.x = Game.width/2 - this.w / 2;
@@ -119,16 +119,15 @@
 			 this.x = Game.width - this.w 
 		}
 	
-		
 		if(!Game.keys['fire']){
-			pulsado = true;
+			noPulsado = true;
 		}
 		this.reload-=dt;
-		if(Game.keys['fire'] && this.reload < 0 && pulsado) {
+		if(Game.keys['fire'] && this.reload < 0 && noPulsado) {
 			 // Esta pulsada la tecla de disparo y ya ha pasado el tiempo reload
 			 //Game.keys['fire'] = false;
 			 this.reload = this.reloadTime;
-			 pulsado = false;
+			 noPulsado = false;
 
 			 // Se añaden al gameboard 2 misiles 
 			 this.board.add(new PlayerMissile(this.x,this.y+this.h/2));
