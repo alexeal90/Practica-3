@@ -87,13 +87,11 @@ describe("PlayerMissile", function(){
 		disparo.board = newBoard;
 		spyOn(newBoard, "remove");
 		
-		//while( cte > (-disparo.h-disparo.y)/disparo.vy ) { cte /= 5; };
 		disparo.step(cte);
-		
+		//en estos momentos this.y = 709 será mayor que -this.h = -10 por lo que no se cumplira la condicion para llamara a .remove
 		expect(disparo.y).toBe(yAux + disparo.vy*cte);
 		expect(newBoard.remove).not.toHaveBeenCalled();
-		
-		//en estos momentos this.y = -709 será menor que -this.h = -10 por lo que se llamara a .remove con disparo como argumento
+		//modifico el valor del argumento que le paso a .step para que se cumpla la condicion y se llame a .remove con disparo como argumento
 		disparo.step(1+(-disparo.h-disparo.y)/disparo.vy););
 		expect(newBoard.remove).toHaveBeenCalledWith(disparo);
 	});

@@ -81,13 +81,12 @@ describe("PlayerMissile", function(){
 		var cte = -1;
 		//creo un board nuevo con un campo remove vacio, necesario para step.
 		var newBoard = {
-			remove: function(obj) {}
+			remove: function() {}
 		};
 		
 		disparo.board = newBoard;
 		spyOn(newBoard, "remove");
 		
-		//while( cte > (-disparo.h-disparo.y)/disparo.vy ) { cte /= 5; };
 		disparo.step(cte);
 		//en estos momentos this.y = 709 será mayor que -this.h = -10 por lo que no se cumplira la condicion para llamara a .remove
 		expect(disparo.y).toBe(yAux + disparo.vy*cte);
