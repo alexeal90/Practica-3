@@ -137,7 +137,6 @@ describe("Clase PlayerShip", function(){
    });
 
 	it("fire con tecla space pulsada", function(){
-		Game = oldGame;
 		miNave = new PlayerShip();
 		
 		board = new GameBoard();
